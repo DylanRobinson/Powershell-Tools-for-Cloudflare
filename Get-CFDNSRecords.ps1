@@ -1,7 +1,8 @@
-# The following uses the Cloudflare RESTful API with token authentication.
+# List DNS Records using the Cloudflare RESTful API
 
-# List DNS Records
+# Authentication: API Token
 # Permission needed: dns_records:read
+# Documentation: https://api.cloudflare.com/#dns-records-for-a-zone-list-dns-records
 
 Function Get-CFDNSRecords {
     [CmdletBinding()]
