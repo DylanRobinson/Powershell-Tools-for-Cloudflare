@@ -9,7 +9,7 @@ Function Get-CFDNSRecords {
         [Parameter(
             Position = 1,
             Mandatory = $true,
-            HelpMessage = "Enter your Cloudflare Zone Identifier")]
+            HelpMessage = 'Enter your Cloudflare Zone Identifier')]
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
         [ValidateCount(1)]
@@ -20,7 +20,7 @@ Function Get-CFDNSRecords {
         [Parameter(
             Position = 2,
             Mandatory = $true,
-            HelpMessage = "Enter your API Bearer Token")]
+            HelpMessage = 'Enter your API Bearer Token')]
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
         [ValidateCount(1)]
