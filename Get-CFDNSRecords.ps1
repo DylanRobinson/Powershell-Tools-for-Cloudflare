@@ -12,8 +12,7 @@ Function Get-CFDNSRecords {
             HelpMessage = 'Enter your Cloudflare Zone Identifier')]
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
-        [ValidateCount(1)]
-        [ValidateLength(32)]
+        [ValidateLength(32, 32)]
         [ValidatePattern("[a-fA-F0-9]")]
         [string]$ZoneID,
 
@@ -23,7 +22,6 @@ Function Get-CFDNSRecords {
             HelpMessage = 'Enter your API Bearer Token')]
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
-        [ValidateCount(1)]
         [string]$APIToken,
 
         [Parameter(
@@ -32,7 +30,6 @@ Function Get-CFDNSRecords {
             HelpMessage = 'DNS record type. Example: "A"')]
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
-        [ValidateCount(1)]
         [ValidateSet("A", "AAAA", "CNAME", "TXT", "SRV", "LOC", "MX", "NS", "SPF", "CERT", "DNSKEY", "DS", "NAPTR", "SMIMEA", "SSHFP", "TLSA", "URI")]
         [string]$Type,
         
@@ -42,7 +39,6 @@ Function Get-CFDNSRecords {
             HelpMessage = 'DNS record name. Example: "example.com"')]
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
-        [ValidateCount(1)]
         [ValidateLength(0, 255)]
         [string]$Name,
         
@@ -60,7 +56,6 @@ Function Get-CFDNSRecords {
             HelpMessage = 'Page number of paginated results. Example: "1"')]
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
-        [ValidateCount(1)]
         [int]$Page,
         
         [Parameter(
@@ -69,7 +64,6 @@ Function Get-CFDNSRecords {
             HelpMessage = 'Number of DNS records per page. Example: "20"')]
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
-        [ValidateCount(1)]
         [ValidateRange(5, 100)]
         [int]$PerPage,
         
@@ -79,7 +73,6 @@ Function Get-CFDNSRecords {
             HelpMessage = 'Field to order records by. Example: "type"')]
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
-        [ValidateCount(1)]
         [ValidateSet("type", "name", "content", "ttl", "proxied")]
         [string]$Order,
         
@@ -89,7 +82,6 @@ Function Get-CFDNSRecords {
             HelpMessage = 'Direction to order domains. Example: "desc"')]
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
-        [ValidateCount(1)]
         [ValidateSet("asc", "desc")]
         [string]$Direction,
         
@@ -99,7 +91,6 @@ Function Get-CFDNSRecords {
             HelpMessage = 'Whether to match all search requirements or at least one (any). Example: "all"')]
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
-        [ValidateCount(1)]
         [ValidateSet("any", "all")]
         [string]$Match
 
