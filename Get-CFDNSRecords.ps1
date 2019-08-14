@@ -116,8 +116,23 @@ Function Get-CFDNSRecords {
         $Parameters = "?" + $Parameters
     }
 
-    $response = Invoke-RestMethod -Headers $Headers -Method GET -URI "https://api.cloudflare.com/client/v4/zones/$ZoneID/dns_records$Parameters"
-    $response.result
-}
+    # Check if TLS 1.2 is available, if not add it.
+    Try {
+        If ([Net.ServicePointManager]::SecurityProtocol -notlike '*Tls12*') {
+            [Net.ServicePointManager]::SecurityProtocol += [Net.SecurityProtocolType]::Tls12
+        }
+    }
+    Catch {
+        Throw "The Cloudflare RESTful API requires TLS 1.2 to be enabled. Please upgrade your client to TLS 1.2 or greater."
+    }
+    #
 
-Get-CFDNSRecords
+    Try {
+        $Response = Invoke-RestMethod -Headers $Headers -Method GET -URI "https://api.cloudflare.com/client/v4/zones/$ZoneID/dns_records$Parameters"
+        $Response.result
+    }
+    Catch {
+        Throw " $((ConvertFrom-Json $_.ErrorDetails.Message).errors.message)"
+    }
+
+}
