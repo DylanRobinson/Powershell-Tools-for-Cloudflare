@@ -125,14 +125,13 @@ Function Get-CFDNSRecords {
     Catch {
         Throw "The Cloudflare RESTful API requires TLS 1.2 to be enabled. Please upgrade your client to TLS 1.2 or greater."
     }
-    #
-
+    
+    # Output results 
     Try {
         $Response = Invoke-RestMethod -Headers $Headers -Method GET -URI "https://api.cloudflare.com/client/v4/zones/$ZoneID/dns_records$Parameters"
         $Response.result
     }
     Catch {
-        Throw " $((ConvertFrom-Json $_.ErrorDetails.Message).errors.message)"
+        Throw "$((ConvertFrom-Json $_.ErrorDetails.Message).errors.message)"
     }
-
 }
